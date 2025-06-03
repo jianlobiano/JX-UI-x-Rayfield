@@ -77,7 +77,7 @@ local ConfigurationExtension = ".rfld"
 local settingsTable = {
 	General = {
 		-- if needs be in order just make getSetting(name)
-		rayfieldOpen = {Type = 'bind', Value = 'Insert', Name = 'JX Keybind'}, -- CHANGED: Rayfield -> JX
+		rayfieldOpen = {Type = 'bind', Value = 'K', Name = 'JX Keybind'}, -- CHANGED: Rayfield -> JX
 		-- buildwarnings
 		-- rayfieldprompts
 
@@ -135,7 +135,7 @@ local function loadSettings()
 			-- for debug in studio
 			if useStudio then
 				file = [[
-		{"General":{"rayfieldOpen":{"Value":"Insert","Type":"bind","Name":"JX Keybind","Element":{"HoldToInteract":false,"Ext":true,"Name":"JX Keybind","Set":null,"CallOnChange":true,"Callback":null,"CurrentKeybind":"K"}}},"System":{"usageAnalytics":{"Value":false,"Type":"toggle","Name":"Anonymised Analytics","Element":{"Ext":true,"Name":"Anonymised Analytics","Set":null,"CurrentValue":false,"Callback":null}}}}
+		{"General":{"rayfieldOpen":{"Value":"K","Type":"bind","Name":"JX Keybind","Element":{"HoldToInteract":false,"Ext":true,"Name":"JX Keybind","Set":null,"CallOnChange":true,"Callback":null,"CurrentKeybind":"K"}}},"System":{"usageAnalytics":{"Value":false,"Type":"toggle","Name":"Anonymised Analytics","Element":{"Ext":true,"Name":"Anonymised Analytics","Set":null,"CurrentValue":false,"Callback":null}}}}
 	]] -- CHANGED: Rayfield -> JX in the example JSON
 			end
 
