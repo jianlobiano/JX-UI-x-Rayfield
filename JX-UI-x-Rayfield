@@ -1612,7 +1612,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 	LoadingFrame.Subtitle.Text = Settings.LoadingSubtitle or "Interface Suite"
 
 	if Settings.LoadingTitle ~= "JX Interface Suite" then
-		LoadingFrame.Version.Text = "JX UI"
+		LoadingFrame.Version.Text = "JX UI X Rayfield"
 	end
 
 	if Settings.Icon and Settings.Icon ~= 0 and Topbar:FindFirstChild('Icon') then
@@ -1662,8 +1662,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 			while true do
 				task.wait(math.random(180, 600))
 				RayfieldLibrary:Notify({
-					Title = "JX Interface",
-					Content = "Enjoying this UI library? Find it at sirius.menu/discord",
+					Title = "JX ",
+					Content = "Dont Forget To Join Discord Server | Dsc.gg/getjx",
 					Duration = 7,
 					Image = 4370033185,
 				})
