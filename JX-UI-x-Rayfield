@@ -10,7 +10,7 @@
 ]]
 
 if debugX then
-	warn('Initialising JX') -- CHANGED: Rayfield -> JX
+	warn('Initialising JX')
 end
 
 local function getService(name)
@@ -71,13 +71,13 @@ end
 local requestsDisabled = true --getgenv and getgenv().DISABLE_RAYFIELD_REQUESTS
 local InterfaceBuild = '3K3W'
 local Release = "Build 1.672"
-local RayfieldFolder = "JX" -- CHANGED: "Rayfield" -> "JX"
+local RayfieldFolder = "JX"
 local ConfigurationFolder = RayfieldFolder.."/Configurations"
 local ConfigurationExtension = ".rfld"
 local settingsTable = {
 	General = {
 		-- if needs be in order just make getSetting(name)
-		rayfieldOpen = {Type = 'bind', Value = 'K', Name = 'JX Keybind'}, -- CHANGED: Rayfield -> JX
+		rayfieldOpen = {Type = 'bind', Value = 'K', Name = 'JX Keybind'},
 		-- buildwarnings
 		-- rayfieldprompts
 
@@ -126,9 +126,9 @@ local function loadSettings()
 	
 	local success, result =	pcall(function()
 		task.spawn(function()
-			if isfolder and isfolder(RayfieldFolder) then -- RayfieldFolder is now JX
-				if isfile and isfile(RayfieldFolder..'/settings'..ConfigurationExtension) then -- RayfieldFolder is now JX
-					file = readfile(RayfieldFolder..'/settings'..ConfigurationExtension) -- RayfieldFolder is now JX
+			if isfolder and isfolder(RayfieldFolder) then
+				if isfile and isfile(RayfieldFolder..'/settings'..ConfigurationExtension) then
+					file = readfile(RayfieldFolder..'/settings'..ConfigurationExtension)
 				end
 			end
 
@@ -136,7 +136,7 @@ local function loadSettings()
 			if useStudio then
 				file = [[
 		{"General":{"rayfieldOpen":{"Value":"K","Type":"bind","Name":"JX Keybind","Element":{"HoldToInteract":false,"Ext":true,"Name":"JX Keybind","Set":null,"CallOnChange":true,"Callback":null,"CurrentKeybind":"K"}}},"System":{"usageAnalytics":{"Value":false,"Type":"toggle","Name":"Anonymised Analytics","Element":{"Ext":true,"Name":"Anonymised Analytics","Set":null,"CurrentValue":false,"Callback":null}}}}
-	]] -- CHANGED: Rayfield -> JX in the example JSON
+	]]
 			end
 
 
@@ -175,7 +175,7 @@ local function loadSettings()
 	
 	if not success then 
 		if writefile then
-			warn('JX had an issue accessing configuration saving capability.') -- CHANGED: Rayfield -> JX
+			warn('JX had an issue accessing configuration saving capability.')
 		end
 	end
 end
@@ -194,7 +194,7 @@ end
 --	local fileFunctionsAvailable = isfile and writefile and readfile
 
 --	if not fileFunctionsAvailable and not useStudio then
---		warn('JX Interface Suite | Sirius Analytics:\n\n\nAs you don\'t have file functionality with your executor, we are unable to save whether you want to opt in or out to analytics.\nIf you do not want to take part in anonymised usage statistics, let us know in our Discord at sirius.menu/discord and we will manually opt you out.') -- CHANGED: Rayfield -> JX
+--		warn('JX Interface Suite | Sirius Analytics:\n\n\nAs you don\'t have file functionality with your executor, we are unable to save whether you want to opt in or out to analytics.\nIf you do not want to take part in anonymised usage statistics, let us know in our Discord at sirius.menu/discord and we will manually opt you out.')
 --		analytics = true	
 --	else
 --		prompt.create(
@@ -229,10 +229,10 @@ if not requestsDisabled then
 				end)
 				if success and reporter then
 					pcall(function()
-						reporter.report("JX", Release, InterfaceBuild) -- CHANGED: Rayfield -> JX
+						reporter.report("JX", Release, InterfaceBuild)
 					end)
 				else
-					warn("Failed to load or execute the reporter. \nPlease notify JX developers at sirius.menu/discord.") -- CHANGED: Rayfield -> JX
+					warn("Failed to load or execute the reporter. \nPlease notify JX developers at sirius.menu/discord.")
 				end
 			end)
 			if debugX then warn('Finished Report') end
@@ -249,7 +249,7 @@ if debugX then
 	warn('Moving on to continue initialisation')
 end
 
-local RayfieldLibrary = { -- This variable name itself is fine, it's the library's internal name.
+local RayfieldLibrary = {
 	Flags = {},
 	Theme = {
 		Default = {
@@ -656,8 +656,8 @@ repeat
 	correctBuild = false
 
 	if not warned then
-		warn('JX | Build Mismatch') -- CHANGED: Rayfield -> JX
-		print('JX may encounter issues as you are running an incompatible interface version ('.. ((Rayfield:FindFirstChild('Build') and Rayfield.Build.Value) or 'No Build') ..').\n\nThis version of JX is intended for interface build '..InterfaceBuild..'.') -- CHANGED: Rayfield -> JX
+		warn('JX | Build Mismatch')
+		print('JX may encounter issues as you are running an incompatible interface version ('.. ((Rayfield:FindFirstChild('Build') and Rayfield.Build.Value) or 'No Build') ..').\n\nThis version of JX is intended for interface build '..InterfaceBuild..'.')
 		warned = true
 	end
 
@@ -680,21 +680,20 @@ elseif not useStudio then
 	Rayfield.Parent = CoreGui
 end
 
--- ADDED: Set the name of the UI object to "JX"
 Rayfield.Name = "JX"
 
 if gethui then
 	for _, Interface in ipairs(gethui():GetChildren()) do
 		if Interface.Name == Rayfield.Name and Interface ~= Rayfield then
 			Interface.Enabled = false
-			Interface.Name = "JX-Old" -- CHANGED: Rayfield-Old -> JX-Old
+			Interface.Name = "JX-Old"
 		end
 	end
 elseif not useStudio then
 	for _, Interface in ipairs(CoreGui:GetChildren()) do
 		if Interface.Name == Rayfield.Name and Interface ~= Rayfield then
 			Interface.Enabled = false
-			Interface.Name = "JX-Old" -- CHANGED: Rayfield-Old -> JX-Old
+			Interface.Name = "JX-Old"
 		end
 	end
 end
@@ -823,9 +822,9 @@ local function getAssetUri(id: any): string
 	if type(id) == "number" then
 		assetUri = "rbxassetid://" .. id
 	elseif type(id) == "string" and not Icons then
-		warn("JX | Cannot use Lucide icons as icons library is not loaded") -- CHANGED: Rayfield -> JX
+		warn("JX | Cannot use Lucide icons as icons library is not loaded")
 	else
-		warn("JX | The icon argument must either be an icon ID (number) or a Lucide icon name (string)") -- CHANGED: Rayfield -> JX
+		warn("JX | The icon argument must either be an icon ID (number) or a Lucide icon name (string)")
 	end
 	return assetUri
 end
@@ -921,7 +920,7 @@ local function LoadConfiguration(Configuration)
 	local success, Data = pcall(function() return HttpService:JSONDecode(Configuration) end)
 	local changed
 
-	if not success then warn('JX had an issue decoding the configuration file, please try delete the file and reopen JX.') return end -- CHANGED: Rayfield -> JX
+	if not success then warn('JX had an issue decoding the configuration file, please try delete the file and reopen JX.') return end
 
 	-- Iterate through current UI elements' flags
 	for FlagName, Flag in pairs(RayfieldLibrary.Flags) do
@@ -940,9 +939,9 @@ local function LoadConfiguration(Configuration)
 				end
 			end)
 		else
-			warn("JX | Unable to find '"..FlagName.. "' in the save file.") -- CHANGED: Rayfield -> JX
+			warn("JX | Unable to find '"..FlagName.. "' in the save file.")
 			print("The error above may not be an issue if new elements have been added or not been set values.")
-			--RayfieldLibrary:Notify({Title = "JX Flags", Content = "JX was unable to find '"..FlagName.. "' in the save file. Check sirius.menu/discord for help.", Image = 3944688398}) -- CHANGED: Rayfield -> JX (this line is commented out)
+			--RayfieldLibrary:Notify({Title = "JX Flags", Content = "JX was unable to find '"..FlagName.. "' in the save file. Check sirius.menu/discord for help.", Image = 3944688398})
 		end
 	end
 
@@ -1048,7 +1047,7 @@ function RayfieldLibrary:Notify(data) -- action e.g open messages
 		newNotification.Visible = true
 
 		if data.Actions then
-			warn('JX | Not seeing your actions in notifications?') -- CHANGED: Rayfield -> JX
+			warn('JX | Not seeing your actions in notifications?')
 			print("Notification Actions are being sunset for now, keep up to date on when they're back in the discord. (sirius.menu/discord)")
 		end
 
@@ -1174,7 +1173,7 @@ local function Hide(notify: boolean?)
 	Debounce = true
 	if notify then
 		if useMobilePrompt then 
-			RayfieldLibrary:Notify({Title = "Interface Hidden", Content = "The interface has been hidden, you can unhide the interface by tapping 'Show JX'.", Duration = 7, Image = 4400697855}) -- CHANGED: Rayfield -> JX
+			RayfieldLibrary:Notify({Title = "Interface Hidden", Content = "The interface has been hidden, you can unhide the interface by tapping 'Show JX'.", Duration = 7, Image = 4400697855})
 		else
 			RayfieldLibrary:Notify({Title = "Interface Hidden", Content = `The interface has been hidden, you can unhide the interface by tapping {getSetting("General", "rayfieldOpen")}.`, Duration = 7, Image = 4400697855})
 		end
@@ -1253,9 +1252,9 @@ local function Maximise()
 	TweenService:Create(Topbar.Divider, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0}):Play()
 	TweenService:Create(dragBarCosmetic, TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {BackgroundTransparency = 0.7}):Play()
 	-- CHANGED: Main UI size for Maximise (desktop and mobile)
-	TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {Size = useMobileSizing and UDim2.new(0, 700, 0, 400) or UDim2.new(0, 800, 0, 700)}):Play()
+	TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {Size = useMobileSizing and UDim2.new(0, 600, 0, 325) or UDim2.new(0, 650, 0, 580)}):Play()
 	-- CHANGED: Topbar width to match new Main width
-	TweenService:Create(Topbar, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {Size = useMobileSizing and UDim2.new(0, 700, 0, 45) or UDim2.new(0, 800, 0, 45)}):Play()
+	TweenService:Create(Topbar, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {Size = useMobileSizing and UDim2.new(0, 600, 0, 45) or UDim2.new(0, 650, 0, 45)}):Play()
 	TabList.Visible = true
 	task.wait(0.2)
 
@@ -1315,9 +1314,9 @@ local function Unhide()
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 	Main.Visible = true
 	-- CHANGED: Main UI size for Unhide (desktop and mobile)
-	TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {Size = useMobileSizing and UDim2.new(0, 700, 0, 400) or UDim2.new(0, 800, 0, 700)}):Play()
+	TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {Size = useMobileSizing and UDim2.new(0, 600, 0, 325) or UDim2.new(0, 650, 0, 580)}):Play()
 	-- CHANGED: Topbar width to match new Main width
-	TweenService:Create(Main.Topbar, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {Size = useMobileSizing and UDim2.new(0, 700, 0, 45) or UDim2.new(0, 800, 0, 45)}):Play()
+	TweenService:Create(Main.Topbar, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {Size = useMobileSizing and UDim2.new(0, 600, 0, 45) or UDim2.new(0, 650, 0, 45)}):Play()
 	TweenService:Create(Main.Shadow.Image, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {ImageTransparency = 0.6}):Play()
 	TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0}):Play()
 	TweenService:Create(Main.Topbar, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0}):Play()
@@ -1450,9 +1449,9 @@ local function Minimise()
 	TweenService:Create(Topbar.CornerRepair, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {BackgroundTransparency = 1}):Play()
 	TweenService:Create(Topbar.Divider, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {BackgroundTransparency = 1}):Play()
 	-- CHANGED: Main UI size for Minimise (desktop and mobile)
-	TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {Size = useMobileSizing and UDim2.new(0, 695, 0, 45) or UDim2.new(0, 795, 0, 45)}):Play()
+	TweenService:Create(Main, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {Size = useMobileSizing and UDim2.new(0, 595, 0, 45) or UDim2.new(0, 645, 0, 45)}):Play()
 	-- CHANGED: Topbar width to match new Main width
-	TweenService:Create(Topbar, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {Size = useMobileSizing and UDim2.new(0, 695, 0, 45) or UDim2.new(0, 795, 0, 45)}):Play()
+	TweenService:Create(Topbar, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {Size = useMobileSizing and UDim2.new(0, 595, 0, 45) or UDim2.new(0, 645, 0, 45)}):Play()
 
 	task.wait(0.3)
 
@@ -1476,7 +1475,7 @@ local function saveSettings() -- Save settings to config file
 			end
 		end
 		if writefile then
-			writefile(RayfieldFolder..'/settings'..ConfigurationExtension, encoded) -- RayfieldFolder is now JX
+			writefile(RayfieldFolder..'/settings'..ConfigurationExtension, encoded)
 		end
 	end
 end
@@ -1498,14 +1497,14 @@ local function createSettings(window)
 		return
 	end
 
-	local newTab = window:CreateTab('JX Settings', 0, true) -- CHANGED: Rayfield -> JX
+	local newTab = window:CreateTab('JX Settings', 0, true)
 
-	if TabList['JX Settings'] then -- CHANGED: Rayfield -> JX
-		TabList['JX Settings'].LayoutOrder = 1000 -- CHANGED: Rayfield -> JX
+	if TabList['JX Settings'] then
+		TabList['JX Settings'].LayoutOrder = 1000
 	end
 
-	if Elements['JX Settings'] then -- CHANGED: Rayfield -> JX
-		Elements['JX Settings'].LayoutOrder = 1000 -- CHANGED: Rayfield -> JX
+	if Elements['JX Settings'] then
+		Elements['JX Settings'].LayoutOrder = 1000
 	end
 
 	-- Create sections and elements
@@ -1572,7 +1571,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 		task.delay(3, 
 			function() 
 				RayfieldLibrary:Notify({Title = 'Build Mismatch', Content = 'JX may encounter issues as you are running an incompatible interface version ('.. ((Rayfield:FindFirstChild('Build') and Rayfield.Build.Value) or 'No Build') ..').\n\nThis version of JX is intended for interface build '..InterfaceBuild..'.\n\nTry rejoining and then run the script twice.', Image = 4335487866, Duration = 15})		
-			end) -- CHANGED: Rayfield -> JX
+			end)
 	end
 
 	if Settings.ToggleUIKeybind then -- Can either be a string or an Enum.KeyCode
@@ -1591,15 +1590,15 @@ function RayfieldLibrary:CreateWindow(Settings)
 		end
 	end
 
-	if isfolder and not isfolder(RayfieldFolder) then -- RayfieldFolder is now JX
-		makefolder(RayfieldFolder) -- RayfieldFolder is now JX
+	if isfolder and not isfolder(RayfieldFolder) then
+		makefolder(RayfieldFolder)
 	end
 
 	local Passthrough = false
 	Topbar.Title.Text = Settings.Name
 
-	-- CHANGED: Initial size of the main UI frame (scaled up from 420x100)
-	Main.Size = UDim2.new(0, 672, 0, 160) -- Roughly 1.6x width, 1.6x height of original 420x100
+	-- CHANGED: Initial size of the main UI frame (scaled down from previous "too big")
+	Main.Size = UDim2.new(0, 550, 0, 130)
 	Main.Visible = true
 	Main.BackgroundTransparency = 1
 	if Main:FindFirstChild('Notice') then Main.Notice.Visible = false end
@@ -1609,11 +1608,11 @@ function RayfieldLibrary:CreateWindow(Settings)
 	LoadingFrame.Subtitle.TextTransparency = 1
 
 	LoadingFrame.Version.TextTransparency = 1
-	LoadingFrame.Title.Text = Settings.LoadingTitle or "JX" -- CHANGED: Rayfield -> JX
+	LoadingFrame.Title.Text = Settings.LoadingTitle or "JX"
 	LoadingFrame.Subtitle.Text = Settings.LoadingSubtitle or "Interface Suite"
 
-	if Settings.LoadingTitle ~= "JX Interface Suite" then -- CHANGED: Rayfield -> JX
-		LoadingFrame.Version.Text = "JX UI" -- CHANGED: Rayfield -> JX
+	if Settings.LoadingTitle ~= "JX Interface Suite" then
+		LoadingFrame.Version.Text = "JX UI"
 	end
 
 	if Settings.Icon and Settings.Icon ~= 0 and Topbar:FindFirstChild('Icon') then
@@ -1663,7 +1662,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			while true do
 				task.wait(math.random(180, 600))
 				RayfieldLibrary:Notify({
-					Title = "JX Interface", -- CHANGED: Rayfield -> JX
+					Title = "JX Interface",
 					Content = "Enjoying this UI library? Find it at sirius.menu/discord",
 					Duration = 7,
 					Image = 4370033185,
@@ -1706,11 +1705,11 @@ function RayfieldLibrary:CreateWindow(Settings)
 	end
 
 	if Settings.Discord and Settings.Discord.Enabled and not useStudio then
-		if isfolder and not isfolder(RayfieldFolder.."/Discord Invites") then -- RayfieldFolder is now JX
-			makefolder(RayfieldFolder.."/Discord Invites") -- RayfieldFolder is now JX
+		if isfolder and not isfolder(RayfieldFolder.."/Discord Invites") then
+			makefolder(RayfieldFolder.."/Discord Invites")
 		end
 
-		if isfile and not isfile(RayfieldFolder.."/Discord Invites".."/"..Settings.Discord.Invite..ConfigurationExtension) then -- RayfieldFolder is now JX
+		if isfile and not isfile(RayfieldFolder.."/Discord Invites".."/"..Settings.Discord.Invite..ConfigurationExtension) then
 			if request then
 				pcall(function()
 					request({
@@ -1730,7 +1729,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end
 
 			if Settings.Discord.RememberJoins then -- We do logic this way so if the developer changes this setting, the user still won't be prompted, only new users
-				writefile(RayfieldFolder.."/Discord Invites".."/"..Settings.Discord.Invite..ConfigurationExtension,"JX RememberJoins is true for this invite, this invite will not ask you to join again") -- CHANGED: Rayfield -> JX
+				writefile(RayfieldFolder.."/Discord Invites".."/"..Settings.Discord.Invite..ConfigurationExtension,"JX RememberJoins is true for this invite, this invite will not ask you to join again")
 			end
 		end
 	end
@@ -1741,8 +1740,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 			return
 		end
 
-		if isfolder and not isfolder(RayfieldFolder.."/Key System") then -- RayfieldFolder is now JX
-			makefolder(RayfieldFolder.."/Key System") -- RayfieldFolder is now JX
+		if isfolder and not isfolder(RayfieldFolder.."/Key System") then
+			makefolder(RayfieldFolder.."/Key System")
 		end
 
 		if typeof(Settings.KeySettings.Key) == "string" then Settings.KeySettings.Key = {Settings.KeySettings.Key} end
@@ -1754,8 +1753,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 					Settings.KeySettings.Key[i] = string.gsub(Settings.KeySettings.Key[i], " ", "")
 				end)
 				if not Success then
-					print("JX | "..Key.." Error " ..tostring(Response)) -- CHANGED: Rayfield -> JX
-					warn('Check docs.sirius.menu for help with JX specific development.') -- CHANGED: Rayfield -> JX
+					print("JX | "..Key.." Error " ..tostring(Response))
+					warn('Check docs.sirius.menu for help with JX specific development.')
 				end
 			end
 		end
@@ -1764,9 +1763,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 			Settings.KeySettings.FileName = "No file name specified"
 		end
 
-		if isfile and isfile(RayfieldFolder.."/Key System".."/"..Settings.KeySettings.FileName..ConfigurationExtension) then -- RayfieldFolder is now JX
+		if isfile and isfile(RayfieldFolder.."/Key System".."/"..Settings.KeySettings.FileName..ConfigurationExtension) then
 			for _, MKey in ipairs(Settings.KeySettings.Key) do
-				if string.find(readfile(RayfieldFolder.."/Key System".."/"..Settings.KeySettings.FileName..ConfigurationExtension), MKey) then -- RayfieldFolder is now JX
+				if string.find(readfile(RayfieldFolder.."/Key System".."/"..Settings.KeySettings.FileName..ConfigurationExtension), MKey) then
 					Passthrough = true
 				end
 			end
@@ -1877,7 +1876,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					KeyMain.Visible = false
 					if Settings.KeySettings.SaveKey then
 						if writefile then
-							writefile(RayfieldFolder.."/Key System".."/"..Settings.KeySettings.FileName..ConfigurationExtension, FoundKey) -- RayfieldFolder is now JX
+							writefile(RayfieldFolder.."/Key System".."/"..Settings.KeySettings.FileName..ConfigurationExtension, FoundKey)
 						end
 						RayfieldLibrary:Notify({Title = "Key System", Content = "The key for this script has been saved successfully.", Image = 3605522284})
 					end
@@ -2109,8 +2108,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Button.ElementIndicator, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {TextTransparency = 1}):Play()
 					TweenService:Create(Button.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 					Button.Title.Text = "Callback Error"
-					print("JX | "..ButtonSettings.Name.." Callback Error " ..tostring(Response)) -- CHANGED: Rayfield -> JX
-					warn('Check docs.sirius.menu for help with JX specific development.') -- CHANGED: Rayfield -> JX
+					print("JX | "..ButtonSettings.Name.." Callback Error " ..tostring(Response))
+					warn('Check docs.sirius.menu for help with JX specific development.')
 					task.wait(0.5)
 					Button.Title.Text = ButtonSettings.Name
 					TweenService:Create(Button, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -2613,8 +2612,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Input, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(85, 0, 0)}):Play()
 					TweenService:Create(Input.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 					Input.Title.Text = "Callback Error"
-					print("JX | "..InputSettings.Name.." Callback Error " ..tostring(Response)) -- CHANGED: Rayfield -> JX
-					warn('Check docs.sirius.menu for help with JX specific development.') -- CHANGED: Rayfield -> JX
+					print("JX | "..InputSettings.Name.." Callback Error " ..tostring(Response))
+					warn('Check docs.sirius.menu for help with JX specific development.')
 					task.wait(0.5)
 					Input.Title.Text = InputSettings.Name
 					TweenService:Create(Input, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -2848,8 +2847,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 							TweenService:Create(Dropdown, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(85, 0, 0)}):Play()
 							TweenService:Create(Dropdown.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 							Dropdown.Title.Text = "Callback Error"
-							print("JX | "..DropdownSettings.Name.." Callback Error " ..tostring(Response)) -- CHANGED: Rayfield -> JX
-							warn('Check docs.sirius.menu for help with JX specific development.') -- CHANGED: Rayfield -> JX
+							print("JX | "..DropdownSettings.Name.." Callback Error " ..tostring(Response))
+							warn('Check docs.sirius.menu for help with JX specific development.')
 							task.wait(0.5)
 							Dropdown.Title.Text = DropdownSettings.Name
 							TweenService:Create(Dropdown, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -2938,8 +2937,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Dropdown, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(85, 0, 0)}):Play()
 					TweenService:Create(Dropdown.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 					Dropdown.Title.Text = "Callback Error"
-					print("JX | "..DropdownSettings.Name.." Callback Error " ..tostring(Response)) -- CHANGED: Rayfield -> JX
-					warn('Check docs.sirius.menu for help with JX specific development.') -- CHANGED: Rayfield -> JX
+					print("JX | "..DropdownSettings.Name.." Callback Error " ..tostring(Response))
+					warn('Check docs.sirius.menu for help with JX specific development.')
 					task.wait(0.5)
 					Dropdown.Title.Text = DropdownSettings.Name
 					TweenService:Create(Dropdown, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -3059,8 +3058,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 							TweenService:Create(Keybind, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(85, 0, 0)}):Play()
 							TweenService:Create(Keybind.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 							Keybind.Title.Text = "Callback Error"
-							print("JX | "..KeybindSettings.Name.." Callback Error " ..tostring(Response)) -- CHANGED: Rayfield -> JX
-							warn('Check docs.sirius.menu for help with JX specific development.') -- CHANGED: Rayfield -> JX
+							print("JX | "..KeybindSettings.Name.." Callback Error " ..tostring(Response))
+							warn('Check docs.sirius.menu for help with JX specific development.')
 							task.wait(0.5)
 							Keybind.Title.Text = KeybindSettings.Name
 							TweenService:Create(Keybind, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -3189,8 +3188,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Toggle, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(85, 0, 0)}):Play()
 					TweenService:Create(Toggle.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 					Toggle.Title.Text = "Callback Error"
-					print("JX | "..ToggleSettings.Name.." Callback Error " ..tostring(Response)) -- CHANGED: Rayfield -> JX
-					warn('Check docs.sirius.menu for help with JX specific development.') -- CHANGED: Rayfield -> JX
+					print("JX | "..ToggleSettings.Name.." Callback Error " ..tostring(Response))
+					warn('Check docs.sirius.menu for help with JX specific development.')
 					task.wait(0.5)
 					Toggle.Title.Text = ToggleSettings.Name
 					TweenService:Create(Toggle, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -3239,8 +3238,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Toggle, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(85, 0, 0)}):Play()
 					TweenService:Create(Toggle.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 					Toggle.Title.Text = "Callback Error"
-					print("JX | "..ToggleSettings.Name.." Callback Error " ..tostring(Response)) -- CHANGED: Rayfield -> JX
-					warn('Check docs.sirius.menu for help with JX specific development.') -- CHANGED: Rayfield -> JX
+					print("JX | "..ToggleSettings.Name.." Callback Error " ..tostring(Response))
+					warn('Check docs.sirius.menu for help with JX specific development.')
 					task.wait(0.5)
 					Toggle.Title.Text = ToggleSettings.Name
 					TweenService:Create(Toggle, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -3388,8 +3387,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 								TweenService:Create(Slider, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(85, 0, 0)}):Play()
 								TweenService:Create(Slider.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 								Slider.Title.Text = "Callback Error"
-								print("JX | "..SliderSettings.Name.." Callback Error " ..tostring(Response)) -- CHANGED: Rayfield -> JX
-								warn('Check docs.sirius.menu for help with JX specific development.') -- CHANGED: Rayfield -> JX
+								print("JX | "..SliderSettings.Name.." Callback Error " ..tostring(Response))
+								warn('Check docs.sirius.menu for help with JX specific development.')
 								task.wait(0.5)
 								Slider.Title.Text = SliderSettings.Name
 								TweenService:Create(Slider, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -3422,8 +3421,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Slider, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = Color3.fromRGB(85, 0, 0)}):Play()
 					TweenService:Create(Slider.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 					Slider.Title.Text = "Callback Error"
-					print("JX | "..SliderSettings.Name.." Callback Error " ..tostring(Response)) -- CHANGED: Rayfield -> JX
-					warn('Check docs.sirius.menu for help with JX specific development.') -- CHANGED: Rayfield -> JX
+					print("JX | "..SliderSettings.Name.." Callback Error " ..tostring(Response))
+					warn('Check docs.sirius.menu for help with JX specific development.')
 					task.wait(0.5)
 					Slider.Title.Text = SliderSettings.Name
 					TweenService:Create(Slider, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -3477,15 +3476,15 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 
 	task.wait(1.1)
-	-- CHANGED: Initial animation size (scaled up from 390x90)
-	TweenService:Create(Main, TweenInfo.new(0.7, Enum.EasingStyle.Exponential, Enum.EasingDirection.InOut), {Size = UDim2.new(0, 624, 0, 144)}):Play() -- Roughly 1.6x original
+	-- CHANGED: Initial animation size (scaled down from previous "too big")
+	TweenService:Create(Main, TweenInfo.new(0.7, Enum.EasingStyle.Exponential, Enum.EasingDirection.InOut), {Size = UDim2.new(0, 500, 0, 120)}):Play()
 	task.wait(0.3)
 	TweenService:Create(LoadingFrame.Title, TweenInfo.new(0.2, Enum.EasingStyle.Exponential), {TextTransparency = 1}):Play()
 	TweenService:Create(LoadingFrame.Subtitle, TweenInfo.new(0.2, Enum.EasingStyle.Exponential), {TextTransparency = 1}):Play()
 	TweenService:Create(LoadingFrame.Version, TweenInfo.new(0.2, Enum.EasingStyle.Exponential), {TextTransparency = 1}):Play()
 	task.wait(0.1)
 	-- CHANGED: Final size after loading (desktop and mobile)
-	TweenService:Create(Main, TweenInfo.new(0.6, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = useMobileSizing and UDim2.new(0, 700, 0, 400) or UDim2.new(0, 800, 0, 700)}):Play()
+	TweenService:Create(Main, TweenInfo.new(0.6, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {Size = useMobileSizing and UDim2.new(0, 600, 0, 325) or UDim2.new(0, 650, 0, 580)}):Play()
 	TweenService:Create(Main.Shadow.Image, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {ImageTransparency = 0.6}):Play()
 
 	Topbar.BackgroundTransparency = 1
@@ -3537,7 +3536,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 		createSettings(Window)
 	end)
 	
-	if not success then warn('JX had an issue creating settings.') end -- CHANGED: Rayfield -> JX
+	if not success then warn('JX had an issue creating settings.') end
 	
 	return Window
 end
@@ -3648,7 +3647,7 @@ if Topbar:FindFirstChild('Settings') then
 				end
 			end
 
-			Elements.UIPageLayout:JumpTo(Elements['JX Settings']) -- CHANGED: Rayfield -> JX
+			Elements.UIPageLayout:JumpTo(Elements['JX Settings'])
 		end)
 	end)
 
@@ -3722,15 +3721,15 @@ function RayfieldLibrary:LoadConfiguration()
 				end
 			else
 				notified = true
-				RayfieldLibrary:Notify({Title = "JX Configurations", Content = "We couldn't enable Configuration Saving as you are not using software with filesystem support.", Image = 4384402990}) -- CHANGED: Rayfield -> JX
+				RayfieldLibrary:Notify({Title = "JX Configurations", Content = "We couldn't enable Configuration Saving as you are not using software with filesystem support.", Image = 4384402990})
 			end
 		end)
 
 		if success and loaded and not notified then
-			RayfieldLibrary:Notify({Title = "JX Configurations", Content = "The configuration file for this script has been loaded from a previous session.", Image = 4384403532}) -- CHANGED: Rayfield -> JX
+			RayfieldLibrary:Notify({Title = "JX Configurations", Content = "The configuration file for this script has been loaded from a previous session.", Image = 4384403532})
 		elseif not success and not notified then
-			warn('JX Configurations Error | '..tostring(result)) -- CHANGED: Rayfield -> JX
-			RayfieldLibrary:Notify({Title = "JX Configurations", Content = "We've encountered an issue loading your configuration correctly.\n\nCheck the Developer Console for more information.", Image = 4384402990}) -- CHANGED: Rayfield -> JX
+			warn('JX Configurations Error | '..tostring(result))
+			RayfieldLibrary:Notify({Title = "JX Configurations", Content = "We've encountered an issue loading your configuration correctly.\n\nCheck the Developer Console for more information.", Image = 4384402990})
 		end
 	end
 
@@ -3745,8 +3744,8 @@ if useStudio then
 
 
 	local Window = RayfieldLibrary:CreateWindow({
-		Name = "JX Example Window", -- CHANGED: Rayfield -> JX
-		LoadingTitle = "JX Interface Suite", -- CHANGED: Rayfield -> JX
+		Name = "JX Example Window",
+		LoadingTitle = "JX Interface Suite",
 		Theme = 'Default',
 		Icon = 0,
 		LoadingSubtitle = "by Sirius",
@@ -3814,7 +3813,7 @@ if useStudio then
 	})
 
 
-	--RayfieldLibrary:Notify({Title = "JX Interface", Content = "Welcome to JX. These - are the brand new notification design for JX, with custom sizing and JX calculated wait times.", Image = 4483362458}) -- CHANGED: Rayfield -> JX
+	--RayfieldLibrary:Notify({Title = "JX Interface", Content = "Welcome to JX. These - are the brand new notification design for JX, with custom sizing and JX calculated wait times.", Image = 4483362458})
 
 	local Section = Tab:CreateSection("Section Example")
 
@@ -3977,4 +3976,3 @@ task.delay(4, function()
 end)
 
 return RayfieldLibrary
-
